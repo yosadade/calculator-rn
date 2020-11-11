@@ -10,8 +10,8 @@ import {colors} from '../../utils/colors';
 import {Button} from '../../components';
 
 const Main = () => {
-  const [result, setResult] = useState(0);
-  const [count, setCount] = useState(0);
+  const [hasil, setHasil] = useState(0);
+  const [hitung, setHitung] = useState(0);
   const data = [
     {
       id: 1,
@@ -36,16 +36,22 @@ const Main = () => {
   ];
 
   const inputNumber = (value) => {
-    if (count === 0) {
-      setResult(value);
+    if (hitung === 0) {
+      setHitung(value);
     } else {
-      setResult(value + count);
+      setHitung(hitung + '' + value);
     }
   };
 
   const onHandleClear = () => {
-    setResult(0);
-    setCount(0);
+    setHasil(0);
+    setHitung(0);
+  };
+
+  const onHandleHitungHasil = () => {
+    // eslint-disable-next-line no-eval
+    let hasils = eval(hitung);
+    setHitung(hasils);
   };
 
   return (
@@ -56,7 +62,7 @@ const Main = () => {
       />
 
       <TouchableOpacity style={styles.output}>
-        <Text style={styles.outputNumber}>{result}</Text>
+        <Text style={styles.outputNumber}>{hitung}</Text>
       </TouchableOpacity>
 
       <View style={styles.content}>
@@ -66,28 +72,28 @@ const Main = () => {
       </View>
 
       <View style={styles.content}>
-        <Button type="action" title="(" />
-        <Button type="action" title=")" />
-        <Button type="action" title="/" />
-        <Button type="action" title="x" />
+        <Button type="action" title="(" onPress={() => inputNumber('(')} />
+        <Button type="action" title=")" onPress={() => inputNumber(')')} />
+        <Button type="action" title="/" onPress={() => inputNumber('/')} />
+        <Button type="action" title="x" onPress={() => inputNumber('*')} />
       </View>
       <View style={styles.content}>
         <Button title="7" onPress={() => inputNumber(7)} />
         <Button title="8" onPress={() => inputNumber(8)} />
         <Button title="9" onPress={() => inputNumber(9)} />
-        <Button type="action" title="+" />
+        <Button type="action" title="+" onPress={() => inputNumber('+')} />
       </View>
       <View style={styles.content}>
         <Button title="4" onPress={() => inputNumber(4)} />
         <Button title="5" onPress={() => inputNumber(5)} />
         <Button title="6" onPress={() => inputNumber(6)} />
-        <Button type="action" title="-" />
+        <Button type="action" title="-" onPress={() => inputNumber('-')} />
       </View>
       <View style={styles.content}>
         <Button title="1" onPress={() => inputNumber(1)} />
         <Button title="2" onPress={() => inputNumber(2)} />
         <Button title="3" onPress={() => inputNumber(3)} />
-        <Button type="action" title="=" />
+        <Button type="action" title="=" onPress={() => onHandleHitungHasil()} />
       </View>
     </View>
   );
