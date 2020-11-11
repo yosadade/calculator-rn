@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {colors} from '../../../utils/colors';
 
-const Button = ({type, title, onPress}) => {
+const Button = ({type, title, onPress, colorNumber}) => {
   if (type === 'clear') {
     return (
       <TouchableOpacity style={styles.containerClear} onPress={onPress}>
@@ -19,7 +19,7 @@ const Button = ({type, title, onPress}) => {
   }
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Text style={styles.number}>{title}</Text>
+      <Text style={styles.number(colorNumber)}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
+    margin: 2,
   },
   containerClear: {
     flex: 1,
@@ -48,8 +49,8 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     textAlign: 'right',
   },
-  number: {
+  number: (colorNumber) => ({
     fontSize: 24,
-    color: colors.text.primary,
-  },
+    color: colorNumber,
+  }),
 });

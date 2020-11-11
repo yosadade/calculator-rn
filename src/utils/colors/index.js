@@ -7,9 +7,11 @@ const mainColors = {
 export const colors = {
   background: {
     primary: mainColors.dark1,
+    secondary: mainColors.white1,
   },
   text: {
     primary: mainColors.white1,
     secondary: mainColors.orange1,
+    tertiary: mainColors.dark1,
   },
 };
